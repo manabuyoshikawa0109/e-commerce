@@ -30,5 +30,16 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  # DB 管理画面。CakePHP 側のファイルには一切触れない
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - "${ADMINER_PORT:-8082}:8080"
+    environment:
+      # ログイン画面の「サーバ」欄に db を初期表示（Compose のサービス名がホスト名）
+      ADMINER_DEFAULT_SERVER: db
+    depends_on:
+      - db
+
 volumes:
   db_data:
