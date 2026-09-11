@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
     environment:
-      # CakePHP の config/app.php から getenv('DATABASE_URL') で参照できる
+      # CakePHP の config/app.php から env('DATABASE_URL') で参照できる
       DATABASE_URL: "mysql://${MYSQL_USER:-cake}:${MYSQL_PASSWORD:-cakepass}@db/${MYSQL_DATABASE:-cake_app}?encoding=utf8&timezone=UTC&cacheMetadata=true"
 
   db:
