@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class ProductImages extends AbstractMigration
+class CreateProductImages extends AbstractMigration
 {
     /**
      * Change Method.
