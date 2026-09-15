@@ -35,11 +35,11 @@ class CreateProducts extends AbstractMigration
                 'null' => false,
                 'comment' => 'カテゴリー',
             ])
-            ->addColumn('condition', 'integer', [
+            ->addColumn('condition_rank', 'integer', [
                 'limit' => 1,
                 'signed' => false,
                 'null' => false,
-                'comment' => '状態',
+                'comment' => '状態ランク',
             ])
             ->addColumn('brand_name', 'string', [
                 'limit' => 255,
