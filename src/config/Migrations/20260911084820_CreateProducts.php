@@ -18,6 +18,10 @@ class CreateProducts extends AbstractMigration
         ]);
 
         $table
+            ->addColumn('user_id', 'integer', [
+                'null' => false,
+                'comment' => 'ユーザーID',
+            ])
             ->addColumn('name', 'string', [
                 'limit' => 255,
                 'null' => false,
@@ -58,11 +62,6 @@ class CreateProducts extends AbstractMigration
                 'null' => false,
                 'comment' => '販売価格',
             ])
-            ->addColumn('is_published', 'boolean', [
-                'default' => false,
-                'null' => false,
-                'comment' => '公開フラグ',
-            ])
             // CakePHP の Timestamp ビヘイビアが自動で埋めるカラム名
             ->addColumn('created', 'datetime', [
                 'null' => false,
@@ -74,8 +73,8 @@ class CreateProducts extends AbstractMigration
             ]);
 
         $table
-            // 一覧で「公開中の商品を新着順」を引くための複合インデックス
-            ->addIndex(['is_published', 'created'], ['name' => 'idx_products_published_created']);
+            // 一覧で「ステータス『販売中』『売り切れ』の商品を新着順」を引くための複合インデックス
+            ->addIndex(['status', 'created'], ['name' => 'idx_products_status_created']);
 
         $table->create();
     }

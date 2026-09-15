@@ -29,6 +29,24 @@ class UsersController extends AppController
     }
 
     /**
+     * ログイン・会員登録はヘッダー・フッターを持たない専用レイアウトを使う。
+     *
+     * 元テンプレートの login.html / register.html に header-area と
+     * footer-nav-area が無いため、商品画面用の default レイアウトとは分けている。
+     *
+     * @param \Cake\Event\Event $event The beforeRender event.
+     * @return void
+     */
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+
+        if (in_array($this->request->getParam('action'), ['login', 'signup'], true)) {
+            $this->viewBuilder()->setLayout('auth');
+        }
+    }
+
+    /**
      * ログイン
      * レスポンスがNULLを返すと、src/Template/{このコントローラー名}/{このアクション名}.ctpを返す
      * このloginアクションだと、src/Template/Users/login.ctpを返す

@@ -1,58 +1,47 @@
 <?php
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * ヘッダー・フッター付きの共通レイアウト。
+ * 商品一覧（Products/list.ctp）と商品詳細（Products/detail.ctp）で使う。
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * ヘッダーの左右は画面ごとに中身が変わるため、ビューブロックで差し込む。
+ *   - title       : ヘッダー中央に出すページ名
+ *   - headerLeft  : 戻るボタンなど
+ *   - headerRight : フィルターアイコン、ナビゲーショントグルなど
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-</head>
-<body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+<html lang="ja">
+  <head>
+    <?= $this->element('html_head') ?>
+  </head>
+  <body>
+    <!-- Preloader-->
+    <div class="preloader" id="preloader">
+      <div class="spinner-grow text-secondary" role="status">
+        <div class="sr-only"></div>
+      </div>
     </div>
-    <footer>
-    </footer>
-</body>
+    <!-- Header Area-->
+    <div class="header-area" id="headerArea">
+      <div class="container h-100 d-flex align-items-center justify-content-between gap-2">
+        <?= $this->fetch('headerLeft') ?>
+        <!-- Page Title-->
+        <div class="page-heading">
+          <h6 class="mb-0"><?= $this->fetch('title') ?></h6>
+        </div>
+        <?= $this->fetch('headerRight') ?>
+      </div>
+    </div>
+    <?= $this->fetch('offcanvas') ?>
+    <div class="page-content-wrapper">
+      <?= $this->Flash->render() ?>
+      <?= $this->fetch('content') ?>
+    </div>
+    <!-- Internet Connection Status-->
+    <div class="internet-connection-status" id="internetStatus"></div>
+    <?= $this->element('footer_nav') ?>
+    <?= $this->element('scripts') ?>
+  </body>
 </html>

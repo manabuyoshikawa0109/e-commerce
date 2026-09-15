@@ -36,5 +36,7 @@ class AppView extends View
      */
     public function initialize()
     {
+        // 価格表示に使う。Html / Form / Flash は既定で読み込まれるが Number は明示が必要
+        $this->loadHelper('Number');
     }
 }

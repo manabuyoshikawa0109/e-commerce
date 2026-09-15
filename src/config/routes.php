@@ -62,7 +62,15 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    /*
+     * トップページは商品一覧。フッターの HOME もここを指す。
+     * ※ これにより Template/Pages/home.ctp（CakePHP のウェルカムページ）は
+     *   到達不能になるが、意図的にファイルは残している。
+     */
+    $routes->connect('/', ['controller' => 'Products', 'action' => 'list']);
+
+    // 商品詳細。/products/detail/1 より短い /product/1 でアクセスできるようにする
+    $routes->connect('/product/*', ['controller' => 'Products', 'action' => 'detail']);
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.

@@ -66,9 +66,8 @@ class AppController extends Controller
             ],
             // ログイン後の既定の遷移先（直前に弾かれたURLがあればそちらが優先される）
             'loginRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'display',
-                'home',
+                'controller' => 'Products',
+                'action' => 'list',
             ],
             'logoutRedirect' => [
                 'controller' => 'Users',
