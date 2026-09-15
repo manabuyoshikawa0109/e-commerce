@@ -13,7 +13,12 @@
 ._*
 .Spotlight-V100
 .Trashes
-Icon?
+# macOS がフォルダのカスタムアイコン用に作る "Icon\r" を除外する。
+#
+# Icon? だと ? が任意の1文字に一致し、icons ディレクトリまで巻き込む。
+# Icon[\r] は Git が \r を復帰文字と解釈しないため（文字 r のエスケープ扱い）効かない。
+# 制御文字クラスを使うのが唯一正しく動く書き方。
+Icon[[:cntrl:]]
 ehthumbs.db
 Thumbs.db
 .directory
