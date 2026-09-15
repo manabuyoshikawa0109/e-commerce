@@ -14,6 +14,8 @@ services:
     environment:
       # CakePHP の config/app.php から env('DATABASE_URL') で参照できる
       DATABASE_URL: "mysql://${MYSQL_USER:-cake}:${MYSQL_PASSWORD:-cakepass}@db/${MYSQL_DATABASE:-cake_app}?encoding=utf8&timezone=UTC&cacheMetadata=true"
+      # 翻訳・日付・数値の既定ロケール。src/Locale/<ロケール>/*.po が読まれる
+      APP_DEFAULT_LOCALE: "${APP_DEFAULT_LOCALE:-ja_JP}"
 
   db:
     image: mysql:5.7

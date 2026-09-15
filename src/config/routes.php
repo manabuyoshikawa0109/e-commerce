@@ -70,6 +70,16 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /*
+     * 認証まわりの短縮URL。fallbacks() より前に置くこと。
+     * 逆ルーティング（配列からURLを組み立てる処理）は先に一致したルートを使うため、
+     * ここに書いておくと ['controller' => 'Users', 'action' => 'login'] が
+     * 自動的に /login を生成する。コントローラやテンプレート側の修正は不要。
+     */
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/signup', ['controller' => 'Users', 'action' => 'signup']);
+
+    /*
      * Connect catchall routes for all controllers.
      *
      * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for

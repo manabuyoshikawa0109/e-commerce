@@ -1,0 +1,25 @@
+# CakePHP コアメッセージの日本語訳
+#
+# ドメイン "cake" は CakePHP 本体が __d('cake', ...) で出力するメッセージ。
+# バリデーションの既定メッセージもここに含まれる
+# （Validator.php の getRequiredMessage() / getNotEmptyMessage() / _processRules()）。
+#
+# 個別のルールに message を指定した場合はそちらが優先される。
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# requirePresence に引っかかったとき（項目自体が送信されていない）
+msgid "This field is required"
+msgstr "入力必須の項目です。"
+
+# notEmpty 系に引っかかったとき（項目はあるが空）
+msgid "This field cannot be left empty"
+msgstr "入力してください。"
+
+# ルールに message を指定しなかった場合の既定メッセージ
+msgid "The provided value is invalid"
+msgstr "入力値が正しくありません。"

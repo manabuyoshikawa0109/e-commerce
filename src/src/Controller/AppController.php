@@ -47,6 +47,37 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         /*
+         * 認証。ここで読み込むと「全コントローラの全アクションがログイン必須」が既定になる。
+         * ログインなしで公開したいアクションは各コントローラの beforeFilter() で $this->Auth->allow() する。
+         */
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    // ログインIDはメールアドレス。既定は username カラムなので明示する
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'password',
+                    ],
+                ],
+            ],
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
+            // ログイン後の既定の遷移先（直前に弾かれたURLがあればそちらが優先される）
+            'loginRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home',
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
+            'authError' => 'このページを表示するにはログインが必要です。',
+        ]);
+
+        /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3/en/controllers/components/security.html
          */
