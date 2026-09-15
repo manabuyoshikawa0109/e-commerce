@@ -23,10 +23,11 @@ class CreateProducts extends AbstractMigration
                 'null' => false,
                 'comment' => '商品名',
             ])
-            ->addColumn('brand_name', 'string', [
-                'limit' => 255,
-                'null' => true,
-                'comment' => 'ブランド名',
+            ->addColumn('status', 'integer', [
+                'limit' => 1,
+                'signed' => false,
+                'null' => false,
+                'comment' => 'ステータス',
             ])
             ->addColumn('category', 'integer', [
                 'limit' => 1,
@@ -39,6 +40,11 @@ class CreateProducts extends AbstractMigration
                 'signed' => false,
                 'null' => false,
                 'comment' => '状態',
+            ])
+            ->addColumn('brand_name', 'string', [
+                'limit' => 255,
+                'null' => true,
+                'comment' => 'ブランド名',
             ])
             ->addColumn('description', 'text', [
                 'null' => true,
